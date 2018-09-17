@@ -935,7 +935,7 @@ class Wrapper(EWrapper):
             self._logger.error(msg)
             if reqId in self._futures:
                 # the request failed
-                self._endReq(reqId)
+                self._endReq(reqId, RuntimeError(msg), success=False)
             elif (self.clientId, reqId) in self.trades:
                 # something is wrong with the order, cancel it
                 trade = self.trades[(self.clientId, reqId)]
